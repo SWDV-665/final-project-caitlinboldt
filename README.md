@@ -1,4 +1,4 @@
-# Plansky
+# Plantsky
 
 An app to help you remember your plants.
 
