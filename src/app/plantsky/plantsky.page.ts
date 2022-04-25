@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,15 @@ import { Component } from '@angular/core';
 })
 export class PlantskyPage {
 
-  constructor() {}
+  constructor(private modalCtrl: ModalController) {}
+
+  async presentModal() {
+    const modal = await this.modalCtrl.create({
+      component: ModalPage,
+      breakpoints: [0, 0.3, 0.5, 0.8],
+      initialBreakpoint: 0.5
+    });
+    await modal.present();
+  }
 
 }
