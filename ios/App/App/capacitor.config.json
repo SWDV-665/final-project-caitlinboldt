@@ -1,5 +1,5 @@
 {
-	"appId": "io.ionic.starter",
+	"appId": "io.ionic.plantsky",
 	"appName": "Plantsky",
 	"webDir": "www",
 	"bundledWebRuntime": false
