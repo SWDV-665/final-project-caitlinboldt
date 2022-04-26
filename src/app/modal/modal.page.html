@@ -7,11 +7,15 @@
 <ion-content>
   <ion-item>
     <ion-label position="floating">Plant name</ion-label>
-    <ion-input></ion-input>
+    <ion-input (change)="onChange($event, 'name')"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Description</ion-label>
-    <ion-input></ion-input>
+    <ion-input (change)="onChange($event, 'description')"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Days to water</ion-label>
+    <ion-input type="number" (change)="onChange($event, 'water')"></ion-input>
   </ion-item>
   <ion-button expand="block" color="secondary" strong="true" (click)="addPhoto()" class="ion-margin-top">
     Add photo

@@ -12,6 +12,20 @@
       <ion-title size="large">Plantsky</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list *ngFor="let plant of loadPlants()">
+    <ion-item>
+      <ion-card>
+        <img [src]="plant.clickedImage" />
+        <ion-fab right bottom>
+        </ion-fab>
+        <div class="card-title">{{plant.name}}</div>
+        <div class="card-description">{{plant.description}}</div>
+
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button id="trigger-button" expand="full" (click)="presentModal()">
       <ion-icon name="add">

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
+import { PlantService } from '../api/plant.service';
 
 @Component({
   selector: 'app-tab1',
@@ -9,7 +10,7 @@ import { ModalPage } from '../modal/modal.page';
 })
 export class PlantskyPage {
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController, public plantDataService: PlantService) {}
 
   async presentModal() {
     const modal = await this.modalCtrl.create({
@@ -20,4 +21,7 @@ export class PlantskyPage {
     await modal.present();
   }
 
+  loadPlants() {
+    return this.plantDataService.getPlants();
+  }
 }
