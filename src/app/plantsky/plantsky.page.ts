@@ -10,7 +10,15 @@ import { PlantService } from '../api/plant.service';
 })
 export class PlantskyPage {
 
-  constructor(private modalCtrl: ModalController, public plantDataService: PlantService) {}
+  plants = [];
+  errorMessage: string;
+
+  constructor(private modalCtrl: ModalController, public plantDataService: PlantService) {
+    this.loadPlants();
+    plantDataService.dataChanged$.subscribe((dataChanged: boolean) => {
+      this.loadPlants();
+    });
+  }
 
   async presentModal() {
     const modal = await this.modalCtrl.create({
@@ -22,6 +30,11 @@ export class PlantskyPage {
   }
 
   loadPlants() {
-    return this.plantDataService.getPlants();
+    this.plantDataService.getPlants()
+    .subscribe(
+      plants => this.plants = plants,
+      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+      error => this.errorMessage = <any>error
+    );
   }
 }

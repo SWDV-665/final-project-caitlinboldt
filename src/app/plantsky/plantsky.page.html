@@ -13,17 +13,15 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-list *ngFor="let plant of loadPlants()">
-    <ion-item>
-      <ion-card>
-        <img [src]="plant.clickedImage" />
-        <ion-fab right bottom>
-        </ion-fab>
-        <div class="card-title">{{plant.name}}</div>
-        <div class="card-description">{{plant.description}}</div>
-
-      </ion-card>
-    </ion-item>
+  <ion-list class="list" *ngFor="let plant of plants">
+    <ion-card>
+      <img [src]="plant.clickedImage" />
+      <ion-fab right bottom>
+      </ion-fab>
+      <div class="card-title">{{plant.name}}</div>
+      <div class="card-description">{{plant.description}}</div>
+      <div class="card-water">Water every {{plant.daysToWater}} days</div>
+    </ion-card>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

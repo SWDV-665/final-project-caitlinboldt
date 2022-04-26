@@ -12,7 +12,7 @@ export class ModalPage implements OnInit {
   plant = {
     name: '',
     description: '',
-    water: '',
+    daysToWater: '',
     clickedImage: ''
   };
 
