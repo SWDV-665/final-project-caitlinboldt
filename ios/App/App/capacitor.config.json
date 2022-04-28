@@ -2,5 +2,8 @@
 	"appId": "io.ionic.plantsky",
 	"appName": "Plantsky",
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"server": {
+		"url": "http://10.0.0.102:8100"
+	}
 }

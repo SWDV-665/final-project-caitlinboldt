@@ -1,7 +1,12 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+// declare const Buffer;
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { PlantService } from '../api/plant.service';
+import * as aws from 'aws-sdk';
+import { v1 } from 'uuid';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-modal',
@@ -23,14 +28,26 @@ export class ModalPage implements OnInit {
     mediaType: this.camera.MediaType.PICTURE
   };
 
+  s3 = new aws.S3({
+    accessKeyId: environment.accessKeyId,
+    secretAccessKey: environment.secretAccessKeyId,
+  });
+
   constructor(private modalCtrl: ModalController, private camera: Camera, public plantDataService: PlantService) { }
 
   addPhoto() {
     this.camera.getPicture(this.options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      const base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.plant.clickedImage = base64Image;
+      const buf = Buffer.from(imageData, 'base64');
+      const key = v1();
+      const params = {
+        Bucket: 'plantsky-images',
+        Key: key,
+        Body: buf,
+        ContentEncoding: 'base64',
+        ContentType: 'image/jpeg'
+      };
+      this.s3.putObject(params).promise();
+      this.plant.clickedImage = `https://plantsky-images.s3.us-west-1.amazonaws.com/${key}`;
     }, (err) => {
       console.log(err);
     });

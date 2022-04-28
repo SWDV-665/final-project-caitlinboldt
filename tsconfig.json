@@ -14,10 +14,14 @@
     "module": "es2020",
     "lib": ["es2018", "dom"]
   },
+  "exclude": [
+    "node_modules",
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "typeRoots": ["node_modules/@types"]
 }
