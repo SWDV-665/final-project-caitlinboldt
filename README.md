@@ -2,6 +2,8 @@
 
 An app to help you remember your plants.
 
+![High-level Architecture](./screencasts/plantsky.drawio.png)
+
 ## Getting Started
 
 - [Download the installer](https://nodejs.org/) for Node LTS.
